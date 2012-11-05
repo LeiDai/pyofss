@@ -4,5 +4,5 @@
 
 # Also require the following files:
 include COPYING
-#include examples/README
-#recursive-include examples *.py *.dat
+include examples/README
+recursive-include examples *.py
