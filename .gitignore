@@ -1,0 +1,15 @@
+
+# Compiled files:
+*.pyc
+
+# Packages
+*.egg-info
+dist
+
+# Manifest for distutils:
+MANIFEST
+
+# Sphinx documentation:
+doc/_build/
+doc/_static/
+doc/_templates/
