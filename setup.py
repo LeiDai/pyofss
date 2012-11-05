@@ -35,7 +35,7 @@ metadata = dict(
    description = ("Optical fibre system simulator"),
    keywords = ["photonic", "simulation", "fiber", "fibre", "optical"],
    packages = ["pyofss", "pyofss/modules", "pyofss/tests"],
-   long_description = open( "README").read(),
+   long_description = open( "README.rst").read(),
    classifiers = [
       "Development Status :: 5 - Production/Stable",
       "Environment :: Console",
