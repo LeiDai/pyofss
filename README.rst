@@ -7,6 +7,7 @@ A typical system consists of a Gaussian pulse generator module and an optical
 fibre module.
 The field generated is propagated through the fibre by numerical integration of 
 an appropriate Schrödinger-type equation.
+
 Simulated effects include that of dispersion (second, third, and higher order), attenuation, self-phase modulation, self-steepening, and Raman scattering.
 Resulting field profiles (including multiple traces for the fibre module) may be visualised using a range of plot types.
 These include standard x-y plots, top-down "map" plots, three-dimensional "waterfall" plots, and animation videos.
@@ -14,24 +15,36 @@ These include standard x-y plots, top-down "map" plots, three-dimensional "water
 Installation
 ------------
 
-Pyofss is available on Pypi and may be retrieved using the pip program::
+Pyofss is available on Pypi and may be retrieved using the pip program:
 
-   $ aptitude install pip
-   $ pip install pyofss
+.. code-block:: bash
+
+   aptitude install pip
+   pip install pyofss
 
 Then import pyofss within scripts or in an interactive session:
+
+.. code-block:: pycon
+
    >>> from pyofss import *
 
 .. note::
-   If the required dependencies are not satisfied when installing pyofss, then manually install using either::
 
-      $ aptitude install python-numpy python-scipy python-matplotlib
+   If the required dependencies are not satisfied when installing pyofss, then manually install using either:
 
-   or::
+   .. code-block:: bash
+   
+      aptitude install python-numpy python-scipy python-matplotlib
 
-      $ pip install numpy scipy matplotlib
+   or:
 
-   The recommended versions are listed in the "requirements.txt" file within the pyofss package.
-   Using this file, it is possible to automatically install all dependencies::
+   .. code-block:: bash
 
-      $ pip install -r requirements.txt
+      pip install numpy scipy matplotlib
+
+   The recommended versions are listed in the ``requirements.txt`` file within the pyofss package.
+   Using this file, it is possible to automatically install all dependencies:
+   
+   .. code-block:: bash
+
+      pip install -r requirements.txt
