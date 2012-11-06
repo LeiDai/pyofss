@@ -1,7 +1,6 @@
-.. _tutorial-index:
 
- Pyofss tutorial
-================
+Pyofss tutorial
+===============
 
 :Release: |version|
 :Date: |today|
