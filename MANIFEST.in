@@ -1,8 +1,15 @@
 
 # Files included by default:
-# README.rst setup.py setup.cfg pyofss/* pyofss/modules/* pyofss/tests/*
+# README setup.py setup.cfg pyofss/* pyofss/modules/* pyofss/tests/*
 
 # Also require the following files:
 include COPYING
+include README.rst
+include requirements.txt
+
+# Include examples
 include examples/README
 recursive-include examples *.py
+
+# Documentation
+graft doc

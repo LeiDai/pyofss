@@ -5,6 +5,7 @@
 # Packages
 *.egg-info
 dist
+build
 
 # Manifest for distutils:
 MANIFEST
