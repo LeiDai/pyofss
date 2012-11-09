@@ -15,36 +15,33 @@ These include standard x-y plots, top-down "map" plots, three-dimensional "water
 Installation
 ------------
 
-Pyofss is available on Pypi and may be retrieved using the pip program:
+Pyofss is available on PyPI and may be retrieved using the pip program:
 
 .. code-block:: bash
 
-   aptitude install pip
+   sudo aptitude install python-pip
    pip install pyofss
 
 Then import pyofss within scripts or in an interactive session:
 
 .. code-block:: pycon
 
-   >>> from pyofss import *
+   >>> import pyofss
+
+Dependencies
+------------
+
+Pyofss depends on Numpy, Scipy, and Matplotlib.
+They can be installed on Linux distributions using ``aptitude``:
+
+.. code-block:: bash
+
+   sudo aptitude install python-numpy python-scipy python-matplotlib
 
 .. note::
+   The recommended dependency versions are listed in the ``requirements.txt`` file within the pyofss package.
+   Install each of these dependencies using ``pip``:
 
-   If the required dependencies are not satisfied when installing pyofss, then manually install using either:
-
-   .. code-block:: bash
-   
-      aptitude install python-numpy python-scipy python-matplotlib
-
-   or:
-
-   .. code-block:: bash
-
-      pip install numpy scipy matplotlib
-
-   The recommended versions are listed in the ``requirements.txt`` file within the pyofss package.
-   Using this file, it is possible to automatically install all dependencies:
-   
    .. code-block:: bash
 
       pip install -r requirements.txt
