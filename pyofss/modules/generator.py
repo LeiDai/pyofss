@@ -49,7 +49,7 @@ def convert_pulse_width( width, to_fwhm = True, shape = "gaussian", m = 1 ):
    else:
       print "Pulse shape not recognised: %s" % shape
 # ==============================================================================
-class Generator():
+class Generator( object ):
    """
    :param string name: Name of this module
    :param object bit_stream: An array of Bit objects

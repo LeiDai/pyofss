@@ -119,7 +119,7 @@ def dlambda_to_dnu( dlambda, Lambda = 1550.0 ):
    """
    return Domain.vacuum_light_speed * dlambda / (Lambda)**2
 # ==============================================================================
-class Domain():
+class Domain( object ):
    """
    :param Uint total_bits: Total number of bits to generate
    :param Uint samples_per_bit: Number of samples to represent a bit

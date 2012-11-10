@@ -23,7 +23,7 @@
 from scipy import power, sqrt
 from pyofss.field import fft, ifft
 # ==============================================================================
-class Amplifier():
+class Amplifier( object ):
    """
    :param string name: Name of this module
    :param double gain: Amount of (logarithmic) gain. *Unit: dB*

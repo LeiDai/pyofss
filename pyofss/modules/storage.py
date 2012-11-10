@@ -69,7 +69,7 @@ def reduce_to_range( x, ys, first_value, last_value ):
    else:
       print "Cannot reduce storage arrays unless last_value > first_value"
 # ==============================================================================
-class Storage():
+class Storage( object ):
    """ 
    Contains A arrays for multiple z values. Also contains t array and functions 
    to modify the stored data.

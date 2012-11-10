@@ -33,7 +33,7 @@ class OutOfRangeError( SechError ):
 class NotIntegerError( SechError ):
    pass
 # ==============================================================================
-class Sech():
+class Sech( object ):
    """
    :param string name: Name of this module
    :param double position: Relative position within time window

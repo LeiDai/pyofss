@@ -24,7 +24,7 @@ import numpy as np
 
 from domain import Domain
 # ==============================================================================
-class System():
+class System( object ):
    """
    :param object domain: A domain to be used with contained modules
 

@@ -24,7 +24,7 @@ import random
 import copy
 from scipy import power, sqrt, log
 # ==============================================================================
-class Bit():
+class Bit( object ):
    """
    :param double position: Position of pulse
    :param double width: Width of pulse
@@ -67,7 +67,7 @@ class Bit():
 def generate_bitstream():
    return [ Bit() ]
 # ==============================================================================
-class Bit_stream():
+class Bit_stream( object ):
    """
    A bit_stream consists of a number of bits.
    """

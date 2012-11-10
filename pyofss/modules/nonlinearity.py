@@ -59,7 +59,7 @@ def calculate_raman_term( domain, tau_1 = 12.2e-3, tau_2 = 32.0e-3 ):
 
    return h_R
 # ==============================================================================
-class Nonlinearity():
+class Nonlinearity( object ):
    """
    Nonlinearity is used by fibre to generate a nonlinear factor.
    """

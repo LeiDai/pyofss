@@ -36,7 +36,7 @@ class OutOfRangeError( FilterError ):
 class NotIntegerError( FilterError ):
    pass
 # ==============================================================================
-class Filter():
+class Filter( object ):
    """
    :param string name: Name of this module
    :param double width_nu: Spectral bandwidth (HWIeM). *Unit: THz*

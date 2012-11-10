@@ -38,7 +38,7 @@ A_{n+1}^{*} = A_n + h s_\mu k_\mu
 e_{n+1} = A_{n+1} - A_{n+1}^{*} = h (r_\mu - s_mu) k^\mu
 """
 # ==============================================================================
-class Solver():
+class Solver( object ):
    """
    :param string method: Name of solver method to be used
    :param object f: Derivative function

@@ -76,7 +76,7 @@ def calculate_regenerator_factor( alpha, D, gamma, length, peak_power,
    # ===========================================================================
    return (max_nonlinear_phase, regenerator_factor)
 # ==============================================================================
-class Metrics():
+class Metrics( object ):
    """
    Calculate useful metrics using a domain and a field. An example metric is Q.
    """

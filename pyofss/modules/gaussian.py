@@ -33,7 +33,7 @@ class OutOfRangeError( GaussianError ):
 class NotIntegerError( GaussianError ):
    pass
 # ==============================================================================
-class Gaussian():
+class Gaussian( object ):
    """
    :param string name: Name of this module
    :param double position: Relative position within time window

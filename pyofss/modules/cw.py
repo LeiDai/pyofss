@@ -23,7 +23,7 @@
 from numpy import pi
 from scipy import sqrt, exp
 # ==============================================================================
-class Cw():
+class Cw( object ):
    """
    :param string name: Name of this module
    :param double peak_power: Peak power of the CW source

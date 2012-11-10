@@ -27,7 +27,7 @@ from storage import reduce_to_range
 from storage import Storage
 from solver import Solver
 # ==============================================================================
-class Stepper():
+class Stepper( object ):
    """
    :param Uint traces: Number of ouput trace to use
    :param double local_error: Relative local error required in adaptive method

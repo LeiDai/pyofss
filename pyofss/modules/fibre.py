@@ -26,7 +26,7 @@ from linearity import Linearity
 from nonlinearity import Nonlinearity
 from stepper import Stepper
 # ==============================================================================
-class Fibre():
+class Fibre( object ):
    """
    :param string name: Name of this module
    :param double length: Length of fibre

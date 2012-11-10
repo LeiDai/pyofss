@@ -101,7 +101,7 @@ def convert_alpha_to_dB( alpha_linear = 0.0 ):
    return alpha_linear * factor
 # ==============================================================================
 # ==============================================================================
-class Linearity():
+class Linearity( object ):
    """
    :param double alpha: Attenuation factor
    :param array_like beta: Array of dispersion parameters
