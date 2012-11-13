@@ -53,6 +53,7 @@ metadata = dict(
 extra_metadata = dict(
    install_requires = ["numpy>=1.6.2", "scipy>=0.10.1", "matplotlib>=1.1.0"],
    tests_require = ["nose>=1.1.2", "unittest2>=0.5.1"],
+   test_suite = "nose.collector",
    include_package_data = True
 )
 # ==============================================================================
