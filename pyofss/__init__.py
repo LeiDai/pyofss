@@ -1,9 +1,8 @@
 
-# ==============================================================================
 """
     Copyright (C) 2011, 2012  David Bolt
 
-	 This file is part of pyofss.
+    This file is part of pyofss.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,12 +17,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-# ==============================================================================
 
 # Numpy is used widely so import by default
 import numpy as np
 
-# Import simulation modules 
+# Import simulation modules
 from system import System
 from domain import Domain
 
@@ -61,4 +59,3 @@ from modules.linearity import convert_alpha_to_dB
 # Import helper functions for nonlinear parameter and raman term
 from modules.nonlinearity import calculate_gamma
 from modules.nonlinearity import calculate_raman_term
-# ==============================================================================
