@@ -23,7 +23,9 @@ import numpy as np
 import pyopencl as cl
 import pyopencl.array as cl_array
 
+from pyfft.cl import Plan
 from string import Template
+
 
 OPENCL_OPERATIONS = Template("""
 #ifdef cl_khr_fp64 // Khronos extension
@@ -115,8 +117,16 @@ class OpenclFibre(object):
         self.buf_interaction = None
         self.buf_factor = None
 
+        self.shape = None
+        self.plan = None
+
+        self.cached_factor = False
+        # Force usage of cached version of function:
+        self.cl_linear = self.cl_linear_cached
+
     def __call__(self, domain, field):
-        pass
+        self.shape = field.shape
+        self.plan = Plan(domain.total_samples, queue=self.queue)
 
     def cl_initialise(self, dorf="float"):
         """ Initialise opencl related parameters. """
@@ -174,6 +184,72 @@ class OpenclFibre(object):
 
         self.buf_factor = cl_array.to_device(
             self.queue, factor.astype(self.np_complex))
+
+    def cl_copy(self, first_buffer, second_buffer):
+        """ Copy contents of one buffer into another. """
+        self.prg.cl_copy(self.queue, self.shape, None,
+                         first_buffer, second_buffer)
+
+    def cl_linear(self, field_buffer, stepsize, factor_buffer):
+        """ Linear part of step. """
+        self.plan.execute(field_buffer.data, inverse=True)
+        self.prg.cl_linear(self.queue, self.shape, None, field_buffer.data,
+                           factor_buffer.data, self.np_float(stepsize))
+        self.plan.execute(field_buffer.data)
+
+    def cl_linear_cached(self, field_buffer, stepsize, factor_buffer):
+        """ Linear part of step (cached version). """
+        if self.cached_factor is False:
+            print "Caching factor"
+            self.prg.cl_cache(self.queue, self.shape, None,
+                              factor_buffer.data, self.np_float(stepsize))
+            self.cached_factor = True
+
+        self.plan.execute(field_buffer.data, inverse=True)
+        self.prg.cl_linear_cached(self.queue, self.shape, None,
+                                  field_buffer.data, factor_buffer.data)
+        self.plan.execute(field_buffer.data)
+
+    def cl_nonlinear(self, field_buffer, stepsize, gamma=100.0):
+        """ Nonlinear part of step. """
+        self.prg.cl_nonlinear(self.queue, self.shape, None, field_buffer.data,
+                              self.np_float(gamma), self.np_float(stepsize))
+
+    def cl_sum(self, first_buffer, first_factor, second_buffer, second_factor):
+        """ Calculate weighted summation. """
+        self.prg.cl_sum(self.queue, self.shape, None,
+                        first_buffer.data, self.np_float(first_factor),
+                        second_buffer.data, self.np_float(second_factor))
+
+    def cl_rk4ip(self, field, field_temp, field_interaction, factor, stepsize):
+        """ Runge-Kutta in the interaction picture method using OpenCL. """
+        inv_six = 1.0 / 6.0
+        inv_three = 1.0 / 3.0
+        half_step = 0.5 * stepsize
+
+        self.cl_copy(field_temp, field)
+        self.cl_linear(field, half_step, factor)
+
+        self.cl_copy(field_interaction, field)
+        self.cl_nonlinear(field, stepsize)
+        self.cl_linear(field, half_step, factor)
+
+        self.cl_sum(field, 1.0, field_temp, inv_six)
+        self.cl_sum(field_temp, 0.5, field_interaction, 1.0)
+        self.cl_nonlinear(field_temp, stepsize)
+
+        self.cl_sum(field, 1.0, field_temp, inv_three)
+        self.cl_sum(field_temp, 0.5, field_interaction, 1.0)
+        self.cl_nonlinear(field_temp, stepsize)
+
+        self.cl_sum(field, 1.0, field_temp, inv_three)
+        self.cl_sum(field_temp, 1.0, field_interaction, 1.0)
+        self.cl_linear(field_interaction, half_step, factor)
+
+        self.cl_linear(field, half_step, factor)
+        self.cl_nonlinear(field_temp, stepsize)
+
+        self.cl_sum(field, 1.0, field_temp, inv_six)
 
 if __name__ == "__main__":
     # Compare simulations using Fibre and OpenclFibre modules.
